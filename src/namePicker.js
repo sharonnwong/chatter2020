@@ -25,10 +25,11 @@ function NamePicker(props){
         }
     },[])
 
-    return <div>
+    return <div className="username"> 
     <input 
         value={name} 
         ref={inputEl}
+        className="name-input"
         style = {{ display: showName ? 'none':'flex'}}
         onChange = {e=> setName(e.target.value)}
         onKeyPress = {e=> {
@@ -39,7 +40,8 @@ function NamePicker(props){
     {showName && <div>{name}</div>}
 
     <button 
-        onClick={save}>
+        onClick={save}
+        className="name-button">
         {showName ? <FiEdit /> : <FiSave /> /* ? is if, and : is else. If showname is true, show FiEdit; otherwise show FiSave */} 
     </button>
 
