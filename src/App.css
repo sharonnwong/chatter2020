@@ -13,7 +13,7 @@ body{
   justify-content:center;
   background: linear-gradient(145deg, #7f7fd5, #86a8e7, #91eae4);
   /* background:linear-gradient(to right, rgb(0, 100, 109) 42%, rgb(65, 28, 206)) 0% 0% / cover;  */
-  color:black;
+  color: black;
 }
 
 header{
@@ -91,20 +91,37 @@ button img {
   left: 0px;
   display: flex;
   flex-direction: column-reverse;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .messages-wrap {
   width: 100%;
+  display:flex;
+  justify-content: flex-start;
+}
+
+.messages-wrap[from="me"] {
+  justify-content: flex-end;
 }
 
 .msg {
-  color: white;
-  background: black;
-  margin: 5px;
+  color: rgb(83, 12, 12);
+  background: rgb(248, 226, 32);
+  position: relative;
+  margin: 10px;
   border-radius: 5px;
-  padding: 3px 6px;
+  padding: 3px 8px;
   display: inline-block;
+  left: 5px;
+}
+
+.msg-name {
+  font-size: 11px;
+  position: absolute;
+  top: -15px;
+  left: 5px;
+  width: 100vw;
+
 }
 
 .username{

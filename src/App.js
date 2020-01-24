@@ -1,18 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import {db} from './db'
+import {db, useDB} from './db'
 import NamePicker from './namePicker'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 function App() {
-  const [messages, setMessages] = useState([]) /* const [variable, function to change the variable], useState([]) it's initial value, so it's an empty array*/ 
+  useEffect(()=>{
+    const {pathname} = window.location
+    if(pathname.length<2) window.location.pathname='home'
+  })
+  return <BrowserRouter>
+    <Route path="/:room" component={Room}/>
+  </BrowserRouter>
+}
+
+function Room(props) {
+  /*const [messages, setMessages] = useState([])*/ /* const [variable, function to change the variable], useState([]) it's initial value, so it's an empty array*/ 
+  const {room} = props.match.params
   const [name,setName] = useState("")
-
-  useEffect(()=>{ /*have your app run a single time */
-    db.listen({
-      receive: m=> {setMessages(current=> [m, ...current])},
-
-    })
-  },[])
+  const messages = useDB(room)
 
   return <main>
     <header> 
@@ -28,15 +34,18 @@ function App() {
 
     <div className="messages" /* we want to make a scrollable block */> 
     {messages.map((m,i)=>{ /* map is a built in function that allows you to loop through the array*/
-      return <div key={i} className="messages-wrap"><div className="msg">
-        {m.text}
-      </div></div>
+      return <div key={i} className="messages-wrap" from={m.name===name?'me':'you'}>
+        <div className="msg">
+          <div className="msg-name">{m.name}</div>
+          <div className="msg-text">{m.text}</div>
+        </div>
+      </div>
     })}
     </div>
 
     <TextInput onSend={(text)=> {
       db.send({
-        text, name, ts: new Date(),
+        text, name, ts: new Date(), room
       })
     }}/>
   </main>
