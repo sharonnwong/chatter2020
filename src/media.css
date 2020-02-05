@@ -1,0 +1,21 @@
+/* This is mobile, as default*/
+html{
+    font-size: 13px;
+    /* this sets 1rem to 13px*/
+}
+
+/*tablet*/
+@media only screen and (min-width: 600px){
+    html{
+        font-size: 15px;
+        /* this sets 1rem to 15px*/
+    }
+}
+
+/*laptop*/
+@media only screen and (min-width: 768px){
+    html{
+        font-size: 17px;
+        /* this sets 1rem to 15px*/
+    }
+}

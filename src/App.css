@@ -12,8 +12,14 @@ body{
   align-items:center;
   justify-content:center;
   background: linear-gradient(145deg, #7f7fd5, #86a8e7, #91eae4);
+  background-color: #86a8e7;
   /* background:linear-gradient(to right, rgb(0, 100, 109) 42%, rgb(65, 28, 206)) 0% 0% / cover;  */
   color: black;
+}
+html,body,#root{
+  height: 100%;
+  position: fixed;
+  top:0;left:0;bottom:0;right:0;
 }
 
 header{
@@ -23,17 +29,18 @@ header{
   width: 100%;
   border-bottom: 1px solid white;
   color: rgb(100,50,150);
-  padding: 15px 40px;
+  padding: 15px 3rem;
   background: rgba(255,255,255,0.5);
   display:flex;
   align-items:center;
   justify-content: space-between;
+  font-size: 1rem;
 }
 
 header img{
   position: absolute;
   left: 10px;
-  height: 20px;
+  height: 2rem;
   margin-right: 10px;
 }
 
@@ -49,13 +56,15 @@ header img{
 
 .text-input{
   border-radius: 25px;
-  width: 100%;
+  width:calc(100% - 40px);
   position: absolute;
   height: 3px;
   bottom: 5px;
+  right: 1px;
   padding: 15px;
   background: rgb(143, 198, 216);
   border: 1px solid white;
+  font-size: 16px;
 }
 
 .button{
@@ -72,7 +81,7 @@ header img{
 }
 
 .button:hover{
-  background: rgb(100,150,150);
+  background: rgb(165, 245, 245);
   color: white;
 }
 
@@ -83,6 +92,24 @@ button img {
   bottom: 6.5px;
 }
 
+.camera {
+  border-radius: 25px;
+  padding: 7px;
+  left: 7px;
+  bottom: 7.52px;
+  position: absolute;
+  display: flex;
+}
+
+.camera-img {
+  height: 13.5px;
+  width: 13.5px;
+}
+
+.camera:hover {
+  background: rgb(165, 245, 245);
+}
+  
 .messages {
   height: calc(100vh - 110px); /* vh is view height*/
   width:100vw;
@@ -92,12 +119,14 @@ button img {
   display: flex;
   flex-direction: column-reverse;
   overflow-y: auto;
+  
 }
 
 .messages-wrap {
   width: 100%;
   display:flex;
   justify-content: flex-start;
+  flex-shrink: 0;
 }
 
 .messages-wrap[from="me"] {
